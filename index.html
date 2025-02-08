@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Shop</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/064982cd6e.js" crossorigin="anonymous"></script>
+
+    <!-- Font-Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />
+
+    <!-- Font ADLaM Display -->
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet" />
+
+    <style>
+        .font-sora {
+            font-family: "Sora", sans-serif;
+        }
+
+        .font-adlam {
+            font-family: "ADLaM Display", serif;
+        }
+
+        .bg-custom-gradient1 {
+            background: linear-gradient(134.71deg,
+                    rgb(248, 204, 251) 1.286%,
+                    rgb(172, 210, 253) 100%);
+        }
+
+        .bg-custom-gradient2 {
+            background: linear-gradient(134.71deg,
+                    rgb(255, 249, 244) 1.511%,
+                    rgb(249, 223, 138) 100%);
+        }
+
+        .animated-button {
+            background-color: #ffdc26;
+            animation: rotate-and-color 6s infinite;
+        }
+
+        @keyframes rotate-and-color {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+                background-color: transparent;
+                border: solid 1px #ffdc26;
+            }
+
+            50% {
+                transform: rotate(0deg);
+                background-color: #ffdc26;
+            }
+
+            75% {
+                transform: rotate(-5deg);
+                background-color: transparent;
+                border: solid 1px #ffdc26;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Nav-bar -->
+        <nav class="bg-[#FFF9F4] border-[0.5px] border-[#111111] lg:border-none">
+            <div class="navbar max-w-[358px] lg:max-w-[1320px] mx-auto pt-3 pb-[10px] lg:py-[26px]">
+                <div class="navbar-start">
+                    <!-- Logo svg -->
+                    <img src="./assets/logo-header.png" alt="">
+                    <h3 class="font-sora text-[26px] ml-[10px] hidden lg:block">
+                        Browse<span class="text-[#FFDC26]">4</span>Pets
+                    </h3>
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1 font-sora text-[20px]">
+                        <li><a>Find a pet</a></li>
+                        <li><a>Breeds</a></li>
+                        <li><a>Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end gap-3 hidden lg:flex">
+                    <!-- Bell icon svg -->
+                    <svg width="21.752197" height="24.002750" viewBox="0 0 21.7522 24.0028" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <desc>Created with Pixso.</desc>
+                        <defs />
+                        <path id="Vector"
+                            d="M21.56 13.65L19.66 6.82C19.11 4.82 17.9 3.06 16.23 1.82C14.55 0.59 12.52 -0.06 10.44 0C8.36 0.05 6.36 0.8 4.76 2.12C3.15 3.44 2.04 5.26 1.59 7.29L0.11 13.91C-0.05 14.64 -0.04 15.4 0.13 16.13C0.29 16.86 0.63 17.54 1.09 18.12C1.56 18.71 2.16 19.18 2.83 19.5C3.51 19.82 4.25 19.99 5 19.99L6.11 19.99C6.34 21.12 6.95 22.14 7.84 22.87C8.74 23.6 9.86 24 11.01 24C12.16 24 13.28 23.6 14.17 22.87C15.07 22.14 15.68 21.12 15.91 19.99L16.75 19.99C17.52 19.99 18.28 19.81 18.97 19.47C19.66 19.13 20.26 18.63 20.73 18.02C21.19 17.41 21.51 16.69 21.66 15.93C21.8 15.18 21.77 14.4 21.56 13.65ZM11.01 21.99C10.39 21.99 9.79 21.8 9.28 21.44C8.78 21.08 8.4 20.58 8.19 19.99L13.83 19.99C13.62 20.58 13.24 21.08 12.73 21.44C12.23 21.8 11.63 21.99 11.01 21.99ZM19.14 16.81C18.86 17.18 18.5 17.48 18.08 17.68C17.67 17.89 17.21 17.99 16.75 17.99L5 17.99C4.55 17.99 4.1 17.89 3.7 17.7C3.29 17.5 2.94 17.22 2.66 16.87C2.37 16.52 2.18 16.11 2.07 15.67C1.97 15.24 1.97 14.78 2.07 14.34L3.54 7.73C3.89 6.13 4.77 4.7 6.03 3.66C7.29 2.63 8.86 2.04 10.49 2C12.12 1.95 13.72 2.46 15.04 3.43C16.35 4.4 17.3 5.78 17.74 7.35L19.64 14.19C19.76 14.64 19.78 15.1 19.7 15.56C19.61 16.01 19.42 16.44 19.14 16.81Z"
+                            fill="#111111" fill-opacity="1.000000" fill-rule="nonzero" />
+                    </svg>
+                    <!-- Search icon svg -->
+                    <svg width="24.019653" height="24.019722" viewBox="0 0 24.0197 24.0197" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <desc>Created with Pixso.</desc>
+                        <defs />
+                        <path id="Vector"
+                            d="M23.73 22.32L17.77 16.35C19.39 14.36 20.19 11.82 20 9.26C19.81 6.7 18.64 4.31 16.73 2.58C14.83 0.86 12.33 -0.07 9.76 0C7.19 0.06 4.75 1.11 2.93 2.93C1.11 4.75 0.06 7.19 0 9.76C-0.07 12.33 0.86 14.83 2.58 16.73C4.31 18.64 6.7 19.81 9.26 20C11.82 20.19 14.36 19.39 16.35 17.77L22.32 23.73C22.51 23.92 22.76 24.02 23.02 24.01C23.29 24.01 23.54 23.91 23.72 23.72C23.91 23.54 24.01 23.29 24.01 23.02C24.02 22.76 23.92 22.51 23.73 22.32ZM10.03 18.03C8.44 18.03 6.9 17.56 5.58 16.68C4.27 15.8 3.24 14.55 2.64 13.09C2.03 11.63 1.87 10.02 2.18 8.47C2.49 6.91 3.25 5.49 4.37 4.37C5.49 3.25 6.91 2.49 8.47 2.18C10.02 1.87 11.63 2.03 13.09 2.64C14.55 3.24 15.8 4.27 16.68 5.58C17.56 6.9 18.03 8.44 18.03 10.03C18.02 12.15 17.18 14.18 15.68 15.68C14.18 17.18 12.15 18.02 10.03 18.03Z"
+                            fill="#000000" fill-opacity="1.000000" fill-rule="nonzero" />
+                    </svg>
+                    <button
+                        class="bg-transparent border border-[#FFDC26] rounded-lg py-[10px] px-[30px] font-sora text-[20px] hover:bg-[#FFDC26] hover:text-[#111111]">
+                        Login
+                    </button>
+                    <button
+                        class="bg-[#FFDC26] rounded-lg py-[10px] px-[30px] font-sora text-[20px] hover:bg-[#111111] hover:text-[#FFDC26]">
+                        Register
+                    </button>
+                </div>
+                <!-- Menu icon will be shown for Mobile devices -->
+                <div class="navbar-end lg:hidden">
+                    <!-- Menu icon svg -->
+                    <svg width="22.500000" height="15.000000" viewBox="0 0 22.5 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <desc>Created with Pixso.</desc>
+                        <defs />
+                        <path id="Vector (Stroke)"
+                            d="M0 0.93C0 0.41 0.41 0 0.93 0L21.56 0C22.08 0 22.5 0.41 22.5 0.93C22.5 1.45 22.08 1.87 21.56 1.87L0.93 1.87C0.41 1.87 0 1.45 0 0.93ZM0 7.5C0 6.98 0.41 6.56 0.93 6.56L21.56 6.56C22.08 6.56 22.5 6.98 22.5 7.5C22.5 8.01 22.08 8.43 21.56 8.43L0.93 8.43C0.41 8.43 0 8.01 0 7.5ZM0 14.06C0 13.54 0.41 13.12 0.93 13.12L21.56 13.12C22.08 13.12 22.5 13.54 22.5 14.06C22.5 14.58 22.08 15 21.56 15L0.93 15C0.41 15 0 14.58 0 14.06Z"
+                            fill="#111111" fill-opacity="1.000000" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero-section -->
+        <section class="max-w-[358px] lg:max-w-[1320px] mx-auto mt-8 lg:mt-[76px]">
+            <div class="relative">
+                <h2 class="font-adlam text-3xl leading-[40px] lg:text-[56px] lg:leading-[75px]">
+                    Pamper Your Pet, <br />
+                    Because They Deserve <br />
+                    the Best.
+                </h2>
+                <p class="font-sora text-base lg:text-[20px] lg:leading-[36px] mb-3 mt-3 lg:mb-5 lg:mt-3">
+                    Discover a world of treats, toys, and essentials handpicked for
+                    <br class="hidden lg:inline" />
+                    your furry <br class="lg:hidden" />
+                    friends. Shop now and make tails wag with joy!
+                </p>
+                <button
+                    class="bg-[#FFDC26] rounded-lg py-[10px] px-[30px] font-sora text-base lg:text-[20px] animated-button hover:bg-transparent hover:text-[#FFDC26]">
+                    Find a pet
+                </button>
+            </div>
+            <div class="absolute -z-1 top-[300px] -left-2 lg:top-[176px] lg:left-auto">
+                <img src="./assets/cat-big.png" alt="" />
+            </div>
+        </section>
+    </header>
+    <main>
+        <!-- Browse categories -->
+        <section class="max-w-[358px] lg:max-w-[1320px] mx-auto mt-[187px] lg:mt-[500px] mb-[55px] lg:mb-[126px]">
+            <h3 class="font-adlam text-2xl lg:text-4xl mb-8 lg:mb-[48px]">
+                Browse By Categories
+            </h3>
+            <!-- Card container -->
+            <div class="grid grid-cols-2 gap-[10px] lg:grid-cols-6 lg:gap-6">
+                <!-- Card 1-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/dog-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Dog</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            3 items
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 2-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/fish-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Fish</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            3 items
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 3-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/cat-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Cat</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            3 items
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 4-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/bird-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Birds</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            3 items
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 5-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/mouse-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Small pet</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            3 items
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 6-->
+                <div class="bg-[#F9DF8A] rounded-xl hover:bg-[#FFDC26] transition-all duration-300">
+                    <!-- eclipse and img -->
+                    <div class="relative">
+                        <div class="absolute inset-0 flex justify-center items-center">
+                            <div class="w-[104px] h-[104px] bg-white rounded-full"></div>
+                        </div>
+                        <img class="relative mx-auto mt-[54px] lg:mt-[62px]" src="./assets/rabbit-cartoon.png" alt="">
+                    </div>
+                    <!-- name and description -->
+                    <div class="text-center mt-12">
+                        <h3 class="font-adlam lg:text-[20px]">Rabit</h3>
+                        <p class="font-sora mt-[10px] mb-[30px] lg:mt-1 lg:mb-8">
+                            2 items
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending pet products -->
+        <section class="lg:bg-[#FFF9F4]">
+            <div class="max-w-[358px] lg:max-w-[1320px] mx-auto">
+                <h3 class="font-adlam text-2xl lg:text-4xl lg:pt-[140px] mb-8 lg:mb-[48px]">
+                    Trending Pet Products
+                </h3>
+                <!-- card container -->
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-6 pb-[55px] lg:pb-[138px]">
+                    <!-- card-1 big card -->
+                    <div
+                        class="relative bg-[#F9DF8A] h-[340px] lg:h-[402px] rounded-lg hover:bg-[#FFDC26] transition-all duration-300">
+                        <h3
+                            class="font-adlam text-[27px] lg:text-[32px] pt-[43px] lg:pt-[52px] ml-7 lg:ml-8 mb-2 lg:mb-3">
+                            T- Shirt For Dogs
+                        </h3>
+                        <p class="font-sora text-[13px] lg:text-base ml-7 lg:ml-8 mb-3 lg:mb-4">
+                            Discover a world of treats, toys, and <br />
+                            essentials handpicked for
+                        </p>
+                        <button
+                            class="bg-white rounded-lg py-[8px] lg:py-[10px] px-[25px] lg:px-[30px] font-sora text-base lg:text-[20px] ml-7 lg:ml-8 hover:bg-[#111111] hover:text-[#FFDC26]">
+                            Shop Now
+                        </button>
+                        <!-- <div class="absolute bottom-0 right-0">
+                            <img src="./assets/cute-pet-small.png" alt="">
+                        </div> -->
+                        <img class="absolute w-[205px] h-[270px] lg:w-[244px] lg:h-[321px] bottom-0 right-0"
+                            src="./assets/cute-pet-small.png" alt="" />
+                    </div>
+                    <!-- small cards -->
+                    <div class="lg:col-span-2">
+                        <!-- small card container -->
+                        <div class="grid grid-cols-2 gap-[14px] lg:grid-cols-3 lg:gap-[23px]">
+                            <!-- card1 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/dog-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card2 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/fish-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card3 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/bird-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card4 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/rabbit-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card5 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/bird-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.1 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.2 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.3 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.4 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.5 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.6 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.7 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card6.8 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] flex lg:hidden border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card7 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/fish-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card8 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/pet-couch.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- card9 -->
+                            <div
+                                class="relative h-[73px] lg:h-[118px] bg-white rounded-[10px] hidden lg:flex border hover:bg-[#FFDC26] transition-all duration-300">
+                                <div class="absolute inset-0 flex justify-start items-center ml-4">
+                                    <div class="w-[53px] h-[53px] lg:w-[86px] lg:h-[86px] bg-[#FFF9F4] rounded-[10px]">
+                                    </div>
+                                </div>
+                                <img class="relative w-7 h-7 lg:w-12 lg:h-12 mx-7 my-6 lg:m-9"
+                                    src="./assets/rabbit-cartoon.png" alt="" />
+
+                                <!-- text contents -->
+                                <div>
+                                    <!-- rating -->
+                                    <div class="flex gap-2 mt-[10px] lg:mt-[18px]">
+                                        <svg class="w-[11px] h-[11px] lg:w-[18px] lg:h-[18px]" width="18.000000"
+                                            height="18.000000" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs>
+                                                <clipPath id="clip1_731">
+                                                    <rect id="fi_2107957" rx="0.000000" width="17.000000"
+                                                        height="17.000000" transform="translate(0.500000 0.500000)"
+                                                        fill="white" fill-opacity="0" />
+                                                </clipPath>
+                                            </defs>
+                                            <rect id="fi_2107957" rx="0.000000" width="17.000000" height="17.000000"
+                                                transform="translate(0.500000 0.500000)" fill="#FFFFFF"
+                                                fill-opacity="0" />
+                                            <g clip-path="url(#clip1_731)">
+                                                <path id="Vector"
+                                                    d="M17.52 6.43L11.98 5.59L9.5 0.3C9.32 -0.09 8.67 -0.09 8.49 0.3L6.01 5.59L0.47 6.43C0.02 6.5 -0.16 7.06 0.16 7.38L4.18 11.5L3.23 17.33C3.15 17.79 3.64 18.14 4.05 17.91L9 15.18L13.94 17.91C14.34 18.14 14.84 17.8 14.76 17.33L13.81 11.5L17.83 7.38C18.15 7.06 17.97 6.5 17.52 6.43Z"
+                                                    fill="#FFC107" fill-opacity="1.000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                        <h5 class="font-sora text-[10px] lg:text-base">4.5</h5>
+                                    </div>
+                                    <h5 class="font-sora text-xs lg:text-[20px] mt-1 lg:mt-2">
+                                        Pet Bed
+                                    </h5>
+                                    <p class="font-sora text-[10px] lg:text-base mt-1 lg:mt-2">
+                                        $39.99
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Happy Adopters || Challenge part -->
+        <section class="bg-white pb-12 lg:py-16">
+            <div class="max-w-[358px] lg:max-w-[1320px] mx-auto">
+                <h2 class="font-adlam text-2xl lg:text-4xl mb-6">Happy Adopters</h2>
+                <p class="font-sora mb-5">Hear from our satisfied pet parents!</p>
+                <div class="grid gap-6 lg:grid-cols-2">
+                    <div class="p-6 bg-[#F9DF8A] rounded-lg hover:bg-[#FFDC26] transition-all duration-300">
+                        <p class="font-sora mb-4">“We found our lovely puppy here. The process was easy, and now our
+                            home feels complete!”</p>
+                        <span class="font-adlam text-base">- Mamun & Laily</span>
+                    </div>
+                    <div class="p-6 bg-[#F9DF8A] rounded-lg hover:bg-[#FFDC26] transition-all duration-300">
+                        <p class="font-sora mb-4">“Adopting our kitten was the best decision ever. Great platform and
+                            great support!”</p>
+                        <span class="font-adlam text-base">- Jami & Prionti</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Everyday low price -->
+        <section>
+            <div class="max-w-[358px] lg:max-w-[1320px] mx-auto mb-[326px] lg:mb-[405px]">
+                <h3 class="font-adlam text-2xl mb-8 lg:text-4xl lg:mt-[50px] lg:mb-[48px]">
+                    Everyday low Price
+                </h3>
+
+                <!-- Card container -->
+                <div class="grid grid-cols-1 gap-7 lg:grid-cols-5 lg:gap-6">
+                    <!-- card1 big card-->
+                    <div class="relative lg:h-[480px] bg-custom-gradient1 rounded-xl lg:col-span-3 hidden lg:flex">
+                        <div class="lg:mt-[137px] lg:ml-[88px]">
+                            <h6 class="font-sora lg:text-[20px] lg:mb-3">Under Price</h6>
+                            <h3 class="font-adlam lg:text-[32px] lg:mb-2">
+                                Pet Grooming Mitt
+                            </h3>
+                            <h4 class="font-adlam text-white lg:text-2xl lg:mb-4">
+                                (Easy Hair Removal)
+                            </h4>
+                            <h2 class="font-adlam lg:text-[56px]">$7.99</h2>
+                        </div>
+                        <div class="absolute lg:ml-[400px] lg:mt-5">
+                            <img src="./assets/cute-dog-mid.png" alt="" />
+                        </div>
+                    </div>
+                    <!-- card1 for mobile devices -->
+                    <div class="relative h-[335px] bg-custom-gradient1 rounded-xl lg:col-span-2 lg:hidden">
+                        <div class="mt-[38px] ml-[35px]">
+                            <h3 class="font-adlam text-[23px]">Pet Grooming Mitt</h3>
+                            <h2 class="font-adlam text-white text-[39px]">$7.99</h2>
+                        </div>
+                        <div class="absolute inset-0 flex justify-end items-end">
+                            <img class="w-[214px] h-[268]" src="./assets/cute-dog-mid.png" alt="" />
+                        </div>
+                    </div>
+                    <!-- card2 -->
+                    <div class="relative h-[335px] lg:h-[480px] bg-custom-gradient2 rounded-xl lg:col-span-2 lg:flex">
+                        <div class="mt-[38px] ml-[35px] lg:mt-[55px] lg:ml-[50px]">
+                            <h3 class="font-adlam text-[23px] lg:text-[32px]">
+                                T-Shirt for Dogs
+                            </h3>
+                            <h2 class="font-adlam text-[#FFDC26] text-[39px] lg:text-[56px]">
+                                $7.99
+                            </h2>
+                        </div>
+                        <div class="absolute inset-0 flex justify-end items-end">
+                            <img class="w-[218px] h-[274px] lg:w-[312px] lg:h-[392px]" src="./assets/cute-pet-mid.png"
+                                alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#FFDC2680]">
+        <!-- newsletter section -->
+        <div
+            class="relative -top-67 lg:-top-65 max-w-[358px] lg:max-w-[1320px] mx-auto rounded-lg lg:rounded-2xl bg-[#FFF9F4] flex flex-col items-center lg:flex-row lg:gap-[120px] lg:items-start">
+            <div class="relative lg:pl-[90px] pt-8 pb-8 lg:py-[38px]">
+                <img class="w-[190px] h-[238px] lg:w-[330px] lg:h-[415px]" src="./assets/cute-pet-mid.png" alt="">
+            </div>
+            <div class="flex lg:block flex-col items-center lg:items-start pb-8 lg:pb-0">
+                <h3 class="font-adlam text-[22px] lg:text-4xl mb-3 lg:mb-[20px] lg:pt-[77px]">Get Pawsome News!
+                </h3>
+                <p class="font-sora text-base text-center text-[20px] mb-[20px] lg:mb-9 px-3 lg:px-0">Exclusive training
+                    tips, ticks, product
+                    deals and more.</p>
+                <input
+                    class="block bg-[#FFFFFF] rounded-md lg:rounded-lg px-3 py-3 lg:px-5 pr-[120px] lg:pr-[170px] lg:py-4 mb-3 lg:mb-9 font-sora text-[#C4C4C4] text-[14px] lg:text-base"
+                    type="text" placeholder="Enter email..." />
+                <button
+                    class="bg-[#FFDC26] rounded-lg py-[8px] px-[24px] font-sora text-[14px] lg:text-[20px] hover:bg-[#111111] hover:text-[#FFDC26]">Subscribe</button>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div
+            class="max-w-[358px] lg:max-w-[1320px] mx-auto grid lg:grid-cols-3 lg:gap-40 pb-[56px] -mt-[120px] lg:-mt-28 lg:pb-[140px]">
+            <!-- brand -->
+            <div>
+                <!-- logo and name -->
+                <div class="flex gap-2 lg:gap-3 items-center">
+                    <img class="w-[35] h-[35px] lg:w-[47px] lg:h-[48px]" src="./assets/logo-footer.png" alt="" />
+                    <h3 class="font-sora text-[20px] lg:text-[26px]">
+                        Browse<span class="text-[#FFDC26]">4</span>Pets
+                    </h3>
+                </div>
+                <p class="font-sora lg:text-[20px] mt-5 lg:mt-6">
+                    Discover a world of treats, toys, and essentials handpicked for your
+                    furry friends
+                </p>
+            </div>
+            <!-- links -->
+            <div class="flex mt-9 lg:mt-0 lg:justify-center lg:items-end">
+                <ul class="flex flex-col gap-5 lg:gap-8">
+                    <li>
+                        <a class="font-sora text-base lg:text-[20px]" href="">Find a pet</a>
+                    </li>
+                    <li>
+                        <a class="font-sora text-base lg:text-[20px]" href="">Breeds</a>
+                    </li>
+                    <li>
+                        <a class="font-sora text-base lg:text-[20px]" href="">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- socials -->
+            <div class="mt-9 lg:mt-0 flex flex-col justify-end lg:items-end">
+                <h6 class="font-sora text-[14px] lg:mr-[100px] mb-2 lg:text-base">Follow Us</h6>
+                <ul class="flex gap-7">
+                    <li>
+                        <a href=""><i class="fa-brands fa-facebook text-[24px]"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-instagram text-[24px]"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-linkedin text-[24px]"></i></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-brands fa-youtube text-[24px]"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
